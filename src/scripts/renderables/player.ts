@@ -1,31 +1,39 @@
-import { Sprite } from "melonjs";
+import { Sprite, input } from "melonjs";
 
 class PlayerEntity extends Sprite {
 
-    /**
-     * constructor
-     */
-    constructor(x: number, y: number, settings: { image: string; [key: string]: unknown }) {
-        // call the parent constructor
+    constructor(
+        x: number,
+        y: number,
+        settings: { image: string; [key: string]: unknown }
+    ) {
         super(x, y, settings);
     }
 
-    /**
-     * update the entity
-     */
     override update(dt: number) {
-        // change body force based on inputs
-        // ...
-        // call the parent method
+
+        console.log("PLAYER UPDATE");
+
+        if (input.isKeyPressed("left")) {
+            this.pos.x -= 5;
+        }
+
+        if (input.isKeyPressed("right")) {
+            this.pos.x += 5;
+        }
+
+        if (input.isKeyPressed("up")) {
+            this.pos.y -= 5;
+        }
+
+        if (input.isKeyPressed("down")) {
+            this.pos.y += 5;
+        }
+
         return super.update(dt);
     }
 
-    /**
-     * collision handler
-     * (called when colliding with other objects)
-     */
     override onCollision() {
-        // Make all other objects solid
         return true;
     }
 }

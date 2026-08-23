@@ -1,4 +1,4 @@
-import { Application, audio, loader, state, plugin, pool } from "melonjs";
+import { Application, audio, loader, state, plugin, pool, input } from "melonjs";
 import TitleScreen from "./scripts/stage/title";
 import PlayScreen from "./scripts/stage/play";
 import PlayerEntity from "./scripts/renderables/player";
@@ -10,6 +10,11 @@ const app = new Application(1218, 562, {
     parent: "screen",
     scale: "auto",
 });
+
+input.bindKey(input.KEY.LEFT, "left");
+input.bindKey(input.KEY.RIGHT, "right");
+input.bindKey(input.KEY.UP, "up");
+input.bindKey(input.KEY.DOWN, "down");
 
 // initialize the audio
 audio.init("mp3,ogg");
