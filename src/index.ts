@@ -4,9 +4,10 @@ import PlayScreen from "./scripts/stage/play";
 import PlayerEntity from "./scripts/renderables/player";
 import DataManifest from "./manifest";
 import "./index.css";
+import AppleEntity from "./scripts/renderables/apple";
 
 // create a new melonJS Application
-const app = new Application(1218, 562, {
+const app = new Application(500, 590, {
     parent: "screen",
     scale: "auto",
 });
@@ -37,6 +38,9 @@ loader.preload(DataManifest, () => {
 
     // add our player entity in the entity pool
     pool.register("mainPlayer", PlayerEntity);
+    
+    // add apple
+    pool.register("apple",AppleEntity);
 
     // start the game
     state.change(state.PLAY, false);
