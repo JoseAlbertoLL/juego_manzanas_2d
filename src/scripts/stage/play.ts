@@ -5,7 +5,8 @@ import {
     BitmapText,
     Sprite,
     UITextButton,
-    pool
+    pool,
+    audio
 } from "melonjs";
 
 import PlayerEntity from "../renderables/player";
@@ -43,6 +44,8 @@ class PlayScreen extends Stage {
     private tituloResultado?: BitmapText;
     private mensajeResultado?: BitmapText;
     private botonReintentar?: UITextButton;
+
+    private musicaIniciada = false;
 
 
     // =====================================================
@@ -163,7 +166,7 @@ class PlayScreen extends Stage {
     private reiniciarJuego() {
 
         console.log("REINICIANDO JUEGO");
-
+        audio.setVolume(0.8);
 
         // =================================================
         // QUITAR PANTALLA DE RESULTADO
@@ -293,6 +296,7 @@ class PlayScreen extends Stage {
                 : "¡DERROTA!"
         );
 
+        audio.setVolume(0.25);
 
         this.mostrarResultado(
             resultado
@@ -308,6 +312,17 @@ class PlayScreen extends Stage {
 
         this.app = app;
 
+        //audio.play("musica_fondo", true);
+
+        if (!this.musicaIniciada) {
+
+        audio.play(
+            "musica_fondo",
+            true
+        );
+
+        this.musicaIniciada = true;
+    }
 
         // =================================================
         // REINICIAR VARIABLES
@@ -658,8 +673,17 @@ class PlayScreen extends Stage {
                             // MANZANA ATRAPADA
 
                             onCaught:
+                        
                                 (tipo: string) => {
+                                
+                                if (tipo === "manzana_roja") {
+                                    audio.play("sonido_manzana_roja");
+                                }
 
+                                if (tipo === "manzana_verde") {
+                                    audio.play("sonido_manzana_verde");
+                                }
+                                
                                 this.manzanasActivas--;
 
 

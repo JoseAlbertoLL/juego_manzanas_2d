@@ -33,6 +33,21 @@ const DataManifest = [
         name: "manzana_verde",
         type: "image",
         src: "/data/img/objects/sprite_manzana_verde.png"
+    },
+    { 
+        name: "sonido_manzana_roja", 
+        type: "audio", 
+        src: "/data/sfx/" 
+    },
+    { 
+        name: "sonido_manzana_verde", 
+        type: "audio", 
+        src: "/data/sfx/" 
+    },
+    {
+        name: "musica_fondo",
+        type: "audio",
+        src: "/data/bgm/"
     }
 ];
 
